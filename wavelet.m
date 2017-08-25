@@ -1,1 +1,20 @@
-audioread('./Sadness_and_Sarrada.mp3');
+[data,Fs]=audioread('./Sadness_and_Sarrada.mp3');
+subplot(2,2,1),plot (data);
+grid;
+title('Espectro do Audio original');
+noise=awgn(data,0); %adição de ruido.
+subplot(2,2,2),plot(noise);
+grid;
+title('Espectro do Audio com ruido de SNR 0');
+noise2=awgn(data,10);
+subplot(2,2,3),plot(noise2);
+grid;
+title('Espectro do Audio com ruido de SNR 10');
+noise3=awgn(data,-10);
+subplot(2,2,4),plot(noise3);
+grid;
+title('Espectro do Audio com ruido de SNR -10');
+% sound(data,Fs);
+% sound(noise,Fs);
+% sound(noise2,Fs);
+% sound(noise3,Fs);
