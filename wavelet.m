@@ -21,9 +21,20 @@ audiowrite('./audios/audio_noise3.wav', noise3, Fs);
 
 %Butterworth
 figure(2);
-butter_noise = filter(butterworth, noise);
-butter_noise2 = filter(butterworth, noise2);
-butter_noise3 = filter(butterworth, noise3);
+
+%Butterworth manual
+fc = 800; %Frequência de Corte
+[b, a] = butter(6,fc/(Fs/2));
+freqz(b,a);
+butter_noise = filter(b, a, noise);
+butter_noise2 = filter(b, a, noise2);
+butter_noise3 = filter(b, a, noise3);
+
+%Butterworth usando FDA tools, o filtro gerado pelo FDA Tools nomeei de
+%butterworth
+% butter_noise = filter(butterworth, noise);
+% butter_noise2 = filter(butterworth, noise2);
+% butter_noise3 = filter(butterworth, noise3);
 
 %Áudio Original
 subplot(4,2,1), plot(data);
@@ -56,3 +67,7 @@ title('Áudio com Ruído -10 SNR');
 subplot(4,2,8), plot(butter_noise3);
 grid;
 title('Audio Filtrado Butterworth -10 SNR');
+
+audiowrite('./audios/butter_noise.wav', butter_noise, Fs);
+audiowrite('./audios/butter_noise2.wav', butter_noise2, Fs);
+audiowrite('./audios/butter_noise3.wav', butter_noise3, Fs);
