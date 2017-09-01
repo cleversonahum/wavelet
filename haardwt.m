@@ -1,4 +1,4 @@
-function [ output ] = haardwt( input,n )
+function [ output,val,lev ] = haardwt( input,n )
 %HAARDWT Summary of this function goes here
 %   Detailed explanation goes here
 % L = length(input);
@@ -18,12 +18,15 @@ end
 L = length(input);
 len = floor(L/2);
 output = zeros(1,L);
-[l] = level(input);
+l=nextpow2(L)-1;
 if n~= 0
   if n<l
     l=n;
   end
 end
+lev=l;
+val=ones(1,l);
+L=length(val);
 while (l~=0)
     for i = 1:len
        sum =  (input(2*i-1) + input(i * 2))/sqrt(2);
@@ -32,6 +35,7 @@ while (l~=0)
        output(len+i) = diff;
     end
     input = output(1:len*2);
+    val(L-l+1)=len;
     len = floor(len/2);
     l = l-1;
 end
