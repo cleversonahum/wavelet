@@ -18,13 +18,13 @@ end
 L = length(input);
 len = floor(L/2);
 output = zeros(1,L);
-l = level(input);
-if n!= 0
+[l] = level(input);
+if n~= 0
   if n<l
     l=n;
   end
 end
-while (l!=0)
+while (l~=0)
     for i = 1:len
        sum =  (input(2*i-1) + input(i * 2))/sqrt(2);
        diff = (input(2*i-1) - input(i * 2))/sqrt(2);
@@ -33,6 +33,6 @@ while (l!=0)
     end
     input = output(1:len*2);
     len = floor(len/2);
-    l--;
+    l = l-1;
 end
 end
