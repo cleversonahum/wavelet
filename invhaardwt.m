@@ -1,8 +1,17 @@
-function [inverse] = invhaardwt(in)
+function [inverse] = invhaardwt(in,n)
+if ~exist('n','var')
+  n=0;
+end
 L = length(in);
 len = 1;
 inverse = in;
-while(true)
+l = level(in);
+if n!= 0
+  if n<l
+    l=n;
+  end
+end
+while(l!=0)
     in = inverse(1:len*2);    
     for i=1:len
         c = (in(i) + in(i+len))/sqrt(2);
@@ -11,8 +20,6 @@ while(true)
         inverse(2*i) = d;
     end
     len=len*2;
-    if len*2>L
-        return
-    end
+    l--;
 end
 end
