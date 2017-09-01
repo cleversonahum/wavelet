@@ -71,3 +71,8 @@ title('Audio Filtrado Butterworth -10 SNR');
 audiowrite('./audios/butter_noise.wav', butter_noise, Fs);
 audiowrite('./audios/butter_noise2.wav', butter_noise2, Fs);
 audiowrite('./audios/butter_noise3.wav', butter_noise3, Fs);
+
+%Wavelet
+figure(3);
+%Aqui colocar o código chamando as funções e gráfico pra gerar a wavelet e
+%comparar com o sinal com o ruído
