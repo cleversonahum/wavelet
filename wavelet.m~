@@ -79,6 +79,4 @@ figure(3);
 
 
 %SNRs dos sinais
-snr_butter_noise = snr(data, butter_noise);
-snr_butter_noise2 = snr(data, butter_noise2);
-snr_butter_noise3 = snr(data, butter_noise3);
+snr_butter_noise = snr(data
