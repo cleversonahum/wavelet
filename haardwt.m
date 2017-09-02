@@ -18,7 +18,10 @@ end
 L = length(input);
 len = floor(L/2);
 output = zeros(1,L);
-l=nextpow2(L)-1;
+if log2(L)==floor(log2(L))
+    l=log2(L);
+else
+    l=floor(log2(L/2));
 if n~= 0
   if n<l
     l=n;
