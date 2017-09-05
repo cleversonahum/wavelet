@@ -79,16 +79,13 @@ figure(3);
 %comparar com o sinal com o ruído
 
 % Wavelet de haar
-[out,val,lev]=haardwt(noise,3,'s'); % Descendo 3 niveis.
-%[vec]=hthreshold(out);
+[out,val,lev]=haardwt(noise,3,'h'); % Descendo 3 niveis.
 [wavnoise]=invhaardwt(out,val,lev);
 
-[out,val,lev]=haardwt(noise2,3,'s'); % Descendo 3 niveis.
-%[vec]=hthreshold(out);
+[out,val,lev]=haardwt(noise2,3,'h'); % Descendo 3 niveis.
 [wavnoise2]=invhaardwt(out,val,lev);
 
-[out,val,lev]=haardwt(noise3,3,'s'); % Descendo 3 niveis.
-%[vec]=hthreshold(out);
+[out,val,lev]=haardwt(noise3,3,'h'); % Descendo 3 niveis.
 [wavnoise3]=invhaardwt(out,val,lev);
 
 %Áudio Original
@@ -128,9 +125,9 @@ audiowrite('./audios/Wavelet_noise2.wav', wavnoise2, Fs);
 audiowrite('./audios/Wavelet_noise3.wav', wavnoise3, Fs);
 
 %SNRs dos sinais
-% snr_butter_noise = snr(data, butter_noise);
-% snr_butter_noise2 = snr(data, butter_noise2);
-% snr_butter_noise3 = snr(data, butter_noise3);
+ snr_butter_noise = snr(data, butter_noise);
+ snr_butter_noise2 = snr(data, butter_noise2);
+ snr_butter_noise3 = snr(data, butter_noise3);
  snr_wav_noise = snr(data, wavnoise.');
-% snr_wav_noise2 = snr(data, wavnoise2);
-% snr_wav_noise3 = snr(data, wavnoise3);
+ snr_wav_noise2 = snr(data, wavnoise2.');
+ snr_wav_noise3 = snr(data, wavnoise3.');
