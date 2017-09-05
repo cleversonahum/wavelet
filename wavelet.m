@@ -79,15 +79,15 @@ figure(3);
 %comparar com o sinal com o ruído
 
 % Wavelet de haar
-[out,val,lev]=haardwt(noise,3); % Descendo 5 niveis.
+[out,val,lev]=haardwt(noise,3,'s'); % Descendo 3 niveis.
 %[vec]=hthreshold(out);
 [wavnoise]=invhaardwt(out,val,lev);
 
-[out,val,lev]=haardwt(noise2,3); % Descendo 5 niveis.
+[out,val,lev]=haardwt(noise2,3,'s'); % Descendo 3 niveis.
 %[vec]=hthreshold(out);
 [wavnoise2]=invhaardwt(out,val,lev);
 
-[out,val,lev]=haardwt(noise3,3); % Descendo 5 niveis.
+[out,val,lev]=haardwt(noise3,3,'s'); % Descendo 3 niveis.
 %[vec]=hthreshold(out);
 [wavnoise3]=invhaardwt(out,val,lev);
 

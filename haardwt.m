@@ -1,4 +1,4 @@
-function [ output,val,lev ] = haardwt( input,n)
+function [ output,val,lev ] = haardwt( input,n,type)
 %HAARDWT Summary of this function goes here
 %   Detailed explanation goes here
 % L = length(input);
@@ -45,6 +45,6 @@ while (l~=0)
     len = floor(len/2);
     l = l-1;
     soma=soma+val(L-l);
-    [output,stop] = hthreshold(output,val(L-l),soma,stop);
+    [output,stop] = hthreshold(output,val(L-l),soma,stop,type);
 end
 end
