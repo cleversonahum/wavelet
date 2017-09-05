@@ -79,47 +79,47 @@ figure(3);
 %comparar com o sinal com o ruído
 
 % Wavelet de haar
-[out,val,lev]=haardwt(noise,5); % Descendo 5 niveis.
-[vec]=hthreshold(out);
-[wavnoise]=invhaardwt(vec,val,lev);
+[out,val,lev]=haardwt(noise,3); % Descendo 5 niveis.
+%[vec]=hthreshold(out);
+[wavnoise]=invhaardwt(out,val,lev);
 
-[out,val,lev]=haardwt(noise2,5); % Descendo 5 niveis.
-[vec]=hthreshold(out);
-[wavnoise2]=invhaardwt(vec,val,lev);
+[out,val,lev]=haardwt(noise2,3); % Descendo 5 niveis.
+%[vec]=hthreshold(out);
+[wavnoise2]=invhaardwt(out,val,lev);
 
-[out,val,lev]=haardwt(noise3,5); % Descendo 5 niveis.
-[vec]=hthreshold(out);
-[wavnoise3]=invhaardwt(vec,val,lev);
+[out,val,lev]=haardwt(noise3,3); % Descendo 5 niveis.
+%[vec]=hthreshold(out);
+[wavnoise3]=invhaardwt(out,val,lev);
 
 %Áudio Original
-subplot(6,2,1), plot(data);
+subplot(4,2,1), plot(data);
 grid;
 title('Audio Original');
 
 % 0 SNR
-subplot(6,2,3), plot(noise);
+subplot(4,2,3), plot(noise);
 grid;
 title('Audio com Ruído 0 SNR');
 
-subplot(6,2,4), plot(wavnoise);
+subplot(4,2,4), plot(wavnoise);
 grid;
 title('Audio Filtrado Wavelet de haar 0 SNR');
 
 % 10 SNR
-subplot(6,2,5), plot(noise2);
+subplot(4,2,5), plot(noise2);
 grid;
 title('Audio com Ruído 10 SNR');
 
-subplot(6,2,6), plot(wavnoise2);
+subplot(4,2,6), plot(wavnoise2);
 grid;
 title('Audio Filtrado Wavelet de haar 10 SNR');
 
 % -10 SNR
-subplot(6,2,7), plot(noise3);
+subplot(4,2,7), plot(noise3);
 grid;
 title('Áudio com Ruído -10 SNR');
 
-subplot(6,2,8), plot(wavnoise3);
+subplot(4,2,8), plot(wavnoise3);
 grid;
 title('Audio Filtrado Wavelet de haar -10 SNR');
 
@@ -128,9 +128,9 @@ audiowrite('./audios/Wavelet_noise2.wav', wavnoise2, Fs);
 audiowrite('./audios/Wavelet_noise3.wav', wavnoise3, Fs);
 
 %SNRs dos sinais
-snr_butter_noise = snr(data, butter_noise);
-snr_butter_noise2 = snr(data, butter_noise2);
-snr_butter_noise3 = snr(data, butter_noise3);
-snr_wav_noise = snr(data, wavnoise);
-snr_wav_noise2 = snr(data, wavnoise2);
-snr_wav_noise3 = snr(data, wavnoise3);
+% snr_butter_noise = snr(data, butter_noise);
+% snr_butter_noise2 = snr(data, butter_noise2);
+% snr_butter_noise3 = snr(data, butter_noise3);
+ snr_wav_noise = snr(data, wavnoise.');
+% snr_wav_noise2 = snr(data, wavnoise2);
+% snr_wav_noise3 = snr(data, wavnoise3);
