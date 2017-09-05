@@ -1,3 +1,4 @@
+%Lendo áudio, adicionando ruído e plotando gráficos
 [data,Fs]=audioread('./audios/Sadness_and_Sarrada.wav');
 figure(1);
 subplot(2,2,1),plot (data);
