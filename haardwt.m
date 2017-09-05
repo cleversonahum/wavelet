@@ -1,31 +1,29 @@
-function [ output,val,lev ] = haardwt( input,n,type)
-%HAARDWT Summary of this function goes here
-%   Detailed explanation goes here
-% L = length(input);
-% output = input;
-% while L>=1
-%     for i = 1:(L/2)
-%         output(i) = (input(2*i-1)+input(2*i))/sqrt(2);
-%         output((L/2)+i) = (input(2*i-1)-input(2*i))/sqrt(2);
-%     end
-%     input = output;
-%     L = L/2;
-% end
-%
-if ~exist('n','var')
+function [output,val,lev ] = haardwt(input,n,type)
+
+% Entradas
+% input (vetor de entrada)
+% n (niveis de decomposição desejados)
+% type (tipo da threshold: hard ou soft)
+
+% Saidas
+% output (vetor de saida)
+% val (valor repassados para a função que calcula a inversa)
+% lev (valor repassados para a função que calcula a inversa)
+
+if ~exist('n','var')  %Verifica se o nivel de decomposição foi passado no argumento.
   n=0;
 end
-soma=0;
-L = length(input);
+soma=0; %Variavel de apoio para a função de calculo da threshold.
+L = length(input); 
 len = floor(L/2);
 output = zeros(1,L);
-stop=L;
-if log2(L)==floor(log2(L))
+stop=L; %Variavel de apoio para a função de calculo da threshold.
+if log2(L)==floor(log2(L)) %Faz o calculo de niveis maximos possiveis na decomposição de um vetor.
     l=log2(L);
 else
     l=floor(log2(L/2));
 end
-if n~= 0
+if n~= 0 %Seta o nivel se ele foi passado no argumento da função.
   if n<l
     l=n;
   end
@@ -33,7 +31,7 @@ end
 lev=l;
 val=ones(1,l);
 L=length(val);
-while (l~=0)
+while (l~=0) %Loop que ira fazer a transformada e mandar o vetor para fazer a threshold.
     for i = 1:len
        sum =  (input(2*i-1) + input(i * 2))/sqrt(2);
        diff = (input(2*i-1) - input(i * 2))/sqrt(2);
