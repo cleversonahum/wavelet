@@ -15,6 +15,7 @@ function [ output,val,lev ] = haardwt( input,n )
 if ~exist('n','var')
   n=0;
 end
+soma=0;
 L = length(input);
 len = floor(L/2);
 output = zeros(1,L);
@@ -22,6 +23,7 @@ if log2(L)==floor(log2(L))
     l=log2(L);
 else
     l=floor(log2(L/2));
+end
 if n~= 0
   if n<l
     l=n;
@@ -30,6 +32,7 @@ end
 lev=l;
 val=ones(1,l);
 L=length(val);
+stop=L;
 while (l~=0)
     for i = 1:len
        sum =  (input(2*i-1) + input(i * 2))/sqrt(2);
@@ -41,5 +44,7 @@ while (l~=0)
     val(L-l+1)=len;
     len = floor(len/2);
     l = l-1;
+    soma=soma+val(L-l);
+    [input,stop] = hthreshold(input,val(L-l),soma,stop);
 end
 end
